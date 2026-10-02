@@ -68,5 +68,6 @@ This documentation provides a complete analysis of the **Salmon King Seafood (SK
 ### Specialized (`specialized/`)
 | Document | Description |
 |----------|-------------|
+| [Functional Requirements](specialized/functional-requirements.md) | Business rules, workflows, calculations, and validation logic |
 | [Database Patterns](specialized/database-patterns.md) | SQLite database schema and query patterns |
 | [UI Components](specialized/ui-components.md) | VB6 form and control documentation |
