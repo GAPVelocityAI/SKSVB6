@@ -373,7 +373,7 @@ productCode = rs.Fields(0)
         AddToCollection productsStored, productCode
         Set x = lvProductsBy.ListItems.Add(, , productCode)
         For i = 1 To 2
-            If Not IsEmpty(rs.Fields(i)) Then
+            If Not IsNull(rs.Fields(i)) Then
                 x.SubItems(i) = rs.Fields(i)
             End If
         Next i
@@ -406,7 +406,7 @@ If rs.RecordCount > 0 Then
     While Not rs.EOF
         Set x = lvProducts.ListItems.Add(, , rs.Fields(0))
         For i = 1 To (rs.Fields.Count - 1)
-            If Not IsEmpty(rs.Fields(i)) Then
+            If Not IsNull(rs.Fields(i)) Then
                 x.SubItems(i) = rs.Fields(i)
             End If
         Next i

@@ -556,7 +556,7 @@ With fgDetails
     i = 1
     While Not rs.EOF
         For j = 1 To rs.Fields.Count
-            If Not IsEmpty(rs.Fields(i)) Then
+            If Not IsNull(rs.Fields(j - 1)) Then
                 .TextMatrix(i, j - 1) = rs.Fields(j - 1)
             End If
         Next j
