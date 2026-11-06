@@ -10,14 +10,26 @@ This project is a reference application for legacy modernization. It packs the V
 
 SKS is a VB6 executable. Build and run it on Windows with Visual Basic 6.
 
+**Prerequisites:** Windows (32-bit or 64-bit), Visual Basic 6, the ActiveX controls under [Dependencies](#dependencies), and the 32-bit SQLite3 ODBC driver.
+
 1. Install Visual Basic 6 and the ActiveX controls listed under [Dependencies](#dependencies).
-2. Install the **SQLite3 ODBC Driver**. The application opens `Orders.db` with that driver.
+2. Install the **SQLite3 ODBC Driver**. The application opens `Orders.db` with that driver. See [SQLite3 ODBC Driver setup](#sqlite3-odbc-driver-setup).
 3. Open `SKS.vbp`. The startup object is `Sub Main`.
 4. Run the project from the `SKSVB6` folder so the relative database path `Orders.db` resolves.
 
+### SQLite3 ODBC Driver setup
+
+The driver is not bundled with VB6 or Windows.
+
+- Download it from http://www.ch-werner.de/sqliteodbc/
+- Install the **32-bit** build (`sqliteodbc.exe`, not `sqliteodbc_x64.exe`). VB6 applications are always 32-bit, so they need the 32-bit driver even on 64-bit Windows.
+- To check the install, open the 32-bit ODBC Administrator (`C:\Windows\SysWOW64\odbcad32.exe` on 64-bit Windows) and look for **SQLite3 ODBC Driver** on the **Drivers** tab.
+
+**Common error:** `[Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified` at startup means the driver is missing or the 64-bit build was installed instead of the 32-bit one.
+
 `SKS.exe` in this folder is a prebuilt copy of the same application. Run it from `SKSVB6` as well, so it can find `Orders.db`.
 
-On startup, `Sub Main` opens the database and signs in as Allan Cantillo, an administrator (`acantillo`). The shell then shows a splash screen for about three seconds and opens **Create Order**. A login form (`frmLogin`) is included and checks the `Users` table, but the startup path does not display it.
+On startup, `Sub Main` opens the database and signs in as Allan Cantillo, an administrator (`acantillo`). The shell then shows a splash screen for about three seconds and opens **Create Order**. A login form (`frmLogin`) is included and checks the `Users` table, but the startup path does not display it. This automatic sign-in is for demonstration only and would need to be replaced by a real login in a production system.
 
 ## What you can do
 
@@ -41,19 +53,37 @@ Customer, supplier, and product screens use a toolbar (Add, Edit, Save, Delete, 
 
 Supporting dialogs open from those screens: product search, add-product, and the order or receipt detail windows.
 
+### Screenshots
+
+**Add Stock Order** (Orders > Add Stock Order): create a purchase order against a supplier.
+
 ![Add Stock Order](./Media/SKSPhotos/frmOrderReception.PNG)
+
+**Suppliers** (File > Manage Suppliers): supplier contacts and payment terms.
 
 ![Suppliers](./Media/SKSPhotos/frmProviders.PNG)
 
+**Customers** (File > Manage Customers): add, edit, and search customer records.
+
 ![Customers](./Media/SKSPhotos/frmCustomers.PNG)
+
+**Add product**: dialog for adding a product to an order.
 
 ![Add product](./Media/SKSPhotos/frmAddProductTo.PNG)
 
+**Inventory update** (Inventory > Inventory Update): add quantity for a product.
+
 ![Inventory update](./Media/SKSPhotos/frmAddStockManual.PNG)
+
+**Receive stock** (Orders > Add Stock to Inventory): receive a stock order into inventory.
 
 ![Receive stock](./Media/SKSPhotos/frmReceptionApproval.PNG)
 
+**Create invoice** (Orders > Create Invoice): find an order and turn it into an invoice.
+
 ![Create invoice](./Media/SKSPhotos/frmRequestApproval.PNG)
+
+**Search**: search dialog used by the customer, supplier, and product screens.
 
 ![Search](./Media/SKSPhotos/frmSearch.PNG)
 
@@ -113,6 +143,7 @@ SKSVB6/
   *.frm / *.bas        Forms and modules
   Orders.db            SQLite database
   Media/               Logos, toolbar icons, and screen captures
+  *.VBCSln             WinForms upgrade layouts (.NET Framework, .NET, VB.NET)
   Requirements/        Database copies and .NET project stubs for a migrated build
 ```
 
@@ -120,4 +151,6 @@ SKSVB6/
 
 SKS is the kind of VB6 system [GAP Velocity AI](https://www.gapvelocity.ai) assesses and modernizes: desktop UI, COM controls, and a relational data model that need to keep their behavior on .NET. Typical target is C#, Blazor, and Azure.
 
-The `Requirements` folder holds companion files for that path: `Orders.db` plus `App.config` for .NET Framework and .NET, and a .NET Framework project file (`SKS.vbproj` / `SKS.csproj`). `SKS_WinForms.VBCSln`, `SKS_WinForms_NETCore.VBCSln`, and `SKS_Winforms_VBNet.VBCSln` describe WinForms upgrade layouts for this project.
+The `Requirements` folder holds companion files for that path: `Orders.db` plus `App.config` for .NET Framework (`netFramework`) and .NET (`netCore`), the .NET Framework project files (`SKS.vbproj` / `SKS.csproj`), and `WebMAP.option`.
+
+The three `.VBCSln` files in the repository root (`SKS_WinForms.VBCSln`, `SKS_WinForms_NETCore.VBCSln`, and `SKS_Winforms_VBNet.VBCSln`) describe WinForms upgrade layouts for this project.

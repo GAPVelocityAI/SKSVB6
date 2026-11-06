@@ -470,7 +470,7 @@ Else
     While Not rs.EOF
         Set x = lvProducts.ListItems.Add(, , rs.Fields(0))
         For i = 1 To (rs.Fields.Count - 1)
-            If Not IsEmpty(rs.Fields(i)) Then
+            If Not IsNull(rs.Fields(i)) Then
                 x.SubItems(i) = rs.Fields(i)
             End If
         Next i

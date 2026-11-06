@@ -362,6 +362,8 @@ Public Action As Integer
 
 Public OrderId As Integer
 
+Private ActionDispatched As Boolean
+
 Private Sub cmdApprove_Click()
 On Error GoTo HandleError
 If UCase(txtStatus) = "APPROVED" Then
@@ -449,8 +451,19 @@ End Sub
 
 Private Sub Form_Load()
 'LoadData
-If Action <> 0 Then
-   
+End Sub
+
+Private Sub Form_Activate()
+' Runs the requested action (Approve/Cancel) once the form has actually
+' finished showing. Doing this from Form_Load instead crashes with
+' "Object was unloaded" because cmdApprove_Click/cmdCancel_Click end by
+' calling Unload Me, and a form cannot unload itself while .Show is still
+' in the middle of loading/displaying it. Form_Activate only fires after
+' the form is fully shown, so Unload Me here is safe.
+' ActionDispatched guards against Form_Activate firing again when focus
+' returns from the MsgBox shown inside cmdApprove_Click/cmdCancel_Click.
+If Action <> 0 And Not ActionDispatched Then
+    ActionDispatched = True
     Select Case (Action)
         Case 1:
             cmdApprove_Click
@@ -544,7 +557,7 @@ With fgDetails
     i = 1
     While Not rs.EOF
         For j = 1 To rs.Fields.Count
-            If Not IsEmpty(rs.Fields(i)) Then
+            If Not IsNull(rs.Fields(j - 1)) Then
                 .TextMatrix(i, j - 1) = rs.Fields(j - 1)
             End If
         Next j

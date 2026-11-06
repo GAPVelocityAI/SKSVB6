@@ -24,7 +24,7 @@ Begin VB.Form frmAbout
       ScaleHeight     =   337.12
       ScaleMode       =   0  'User
       ScaleWidth      =   337.12
-      TabIndex        =   1
+      TabIndex        =   5
       Top             =   240
       Width           =   540
    End
@@ -53,7 +53,7 @@ Begin VB.Form frmAbout
       ForeColor       =   &H00000000&
       Height          =   195
       Left            =   2450
-      TabIndex        =   2
+      TabIndex        =   1
       Top             =   1200
       Width           =   2985
    End
@@ -72,7 +72,7 @@ Begin VB.Form frmAbout
       ForeColor       =   &H00000000&
       Height          =   195
       Left            =   2445
-      TabIndex        =   4
+      TabIndex        =   3
       Top             =   360
       Width           =   1830
    End
@@ -90,7 +90,7 @@ Begin VB.Form frmAbout
       Caption         =   "Version 1.0"
       Height          =   195
       Left            =   2445
-      TabIndex        =   5
+      TabIndex        =   4
       Top             =   840
       Width           =   2055
    End
@@ -100,7 +100,7 @@ Begin VB.Form frmAbout
       ForeColor       =   &H00000000&
       Height          =   195
       Left            =   255
-      TabIndex        =   3
+      TabIndex        =   2
       Top             =   2625
       Width           =   1980
    End
