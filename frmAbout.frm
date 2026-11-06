@@ -49,7 +49,7 @@ Begin VB.Form frmAbout
    End
    Begin VB.Label lblDescription 
       AutoSize        =   -1  'True
-      Caption         =   "Order Processing Software by Mobilize.net"
+      Caption         =   "Order Processing Software by gapvelocity.ai"
       ForeColor       =   &H00000000&
       Height          =   195
       Left            =   2450
@@ -87,7 +87,7 @@ Begin VB.Form frmAbout
    End
    Begin VB.Label lblVersion 
       AutoSize        =   -1  'True
-      Caption         =   "Version: Mobilize - WebMAP "
+      Caption         =   "Version 1.0"
       Height          =   195
       Left            =   2445
       TabIndex        =   5
@@ -96,7 +96,7 @@ Begin VB.Form frmAbout
    End
    Begin VB.Label lblDisclaimer 
       AutoSize        =   -1  'True
-      Caption         =   "Copyright 2018 Mobilize.Net"
+      Caption         =   "Copyright 2026 GAPVelocity.AI"
       ForeColor       =   &H00000000&
       Height          =   195
       Left            =   255
